@@ -1,0 +1,56 @@
+.registerForm,
+.loginForm {
+  max-width: 580px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: $padding-15;
+  text-align: center;
+}
+
+.formGroup {
+  width: 100%;
+  max-width: 380px;
+  margin: $margin-lg auto;
+  text-align: left;
+  label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    touch-action: manipulation;
+  }
+  input {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #55595c;
+    background-color: #fff;
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  .DatePicker {
+    display: block;
+  }
+
+  .formGroup__btn {
+    display: block;
+    border-radius: 6px;
+    appearance: none;
+    padding: $padding-sm;
+    outline: none;
+    background: rgb(0, 132, 255);
+    background: linear-gradient(0deg, rgba(0, 132, 255, 1) 0%, rgba(0, 198, 255, 1) 100%);
+    cursor: pointer;
+    width: 100%;
+    font-size: $h2-font-size;
+    border: 0;
+    color: $secondary-font-color;
+  }
+}
