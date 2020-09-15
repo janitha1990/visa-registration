@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Purpose of this project is to demonstrate the user registration process for Regov Technologies.
 
 ## Available Scripts
 
