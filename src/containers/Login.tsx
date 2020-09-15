@@ -1,9 +1,13 @@
 import React from "react";
+import { Dispatch } from "redux";
 import { Link } from "react-router-dom";
-import { useSelector, shallowEqual } from "react-redux";
+import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { RouteComponentProps } from "react-router";
+import { ICredentials, IUser, IUserState } from "../store/users/actionTypes";
+import { loginUser } from "../store/users/actions";
 
 type Props = RouteComponentProps;
+
 const Login: React.FC<Props> = ({ history }) => {
   const [credentials, setCredentials] = React.useState<ICredentials>({});
   const [user, setUserData] = React.useState<IUser>({});
@@ -13,23 +17,28 @@ const Login: React.FC<Props> = ({ history }) => {
       [e.currentTarget.id]: e.currentTarget.value,
     });
   };
-  const users: readonly IUser[] = useSelector((state: UserState) => state.users, shallowEqual);
+
+  const users: readonly IUser[] = useSelector((state: IUserState) => state.users, shallowEqual);
+
+  const dispatch: Dispatch<any> = useDispatch();
+  const onSetUser = React.useCallback((id: number) => dispatch(loginUser(id)), [dispatch]);
 
   const loginHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    if (checkAuthentication()) {
+    let result: IUser | null = checkAuthentication();
+    if (result) {
+      onSetUser(result.id);
       history.push("/dashboard");
     } else {
       alert("Invalid credentials");
     }
   };
   const checkAuthentication = () => {
-    let result = false;
+    let result = null;
     if (users.length !== 0) {
       users.map((elm) => {
         if (elm["passportNo"] == credentials.passportNo && elm["password"] == credentials.password) {
-          result = true;
+          result = elm;
         }
       });
     }
@@ -48,7 +57,7 @@ const Login: React.FC<Props> = ({ history }) => {
           <input type="password" placeholder="" id="password" onChange={handleFormData} />
         </div>
         <div className="formGroup">
-          <button type="submit" className="formGroup__btn" onClick={loginHandler}>
+          <button type="submit" className="formGroup__btn" onClick={loginHandler} disabled={!credentials.passportNo || !credentials.password ? true : false}>
             Login
           </button>
         </div>

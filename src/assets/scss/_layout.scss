@@ -41,6 +41,16 @@ body {
   max-width: 1366px;
   padding: $padding-25;
 }
+.wrapper__head {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  .formGroup {
+    width: 120px;
+    margin: 0;
+  }
+}
 //Typography styles
 .p1 {
   font-size: $p1-font-size;

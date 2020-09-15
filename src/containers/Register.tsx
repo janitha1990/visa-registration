@@ -6,6 +6,7 @@ import { RouteComponentProps } from "react-router";
 import DatePicker, { DayValue } from "react-modern-calendar-datepicker";
 import { Card } from "../components/UI/Card";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import { IUser } from "../store/users/actionTypes";
 
 type Props = RouteComponentProps;
 const Register: React.FC<Props> = ({ history }) => {
@@ -46,6 +47,7 @@ const Register: React.FC<Props> = ({ history }) => {
 
   const dispatch: Dispatch<any> = useDispatch();
   const onCreateUser = React.useCallback((user: IUser) => dispatch(createUser(user)), [dispatch]);
+  // const onGetUser = React.useCallback((user: IUser) => dispatch(getUser(user.id)), [dispatch]);
 
   const submitUserInfo = (e: React.FormEvent) => {
     e.preventDefault();
