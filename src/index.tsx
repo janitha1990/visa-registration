@@ -4,8 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import { createStore, compose, Store } from "redux";
 import { Provider } from "react-redux";
 import { userReducer } from "./store/users/reducers";
+
 import "./assets/scss/app.scss";
 import App from "./App";
+import { IUserState, UserActionTypes } from "./store/users/actionTypes";
 
 declare global {
   interface Window {
@@ -15,9 +17,7 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store: Store<UserState, UserAction> & {
-  dispatch: DispatchType;
-} = createStore(userReducer, composeEnhancers());
+const store = createStore(userReducer, composeEnhancers());
 
 const app = (
   <Provider store={store}>
